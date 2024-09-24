@@ -1,0 +1,35 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import { getCollection } from "astro:content";
+import Benefit from "@components/Benefit.astro";
+import Blog from "@components/Blog.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout>
+  <section class="text-center">
+    <div class="grid place-items-center">
+      <Header title="DefitModsThings" />
+      <p class="mt-3 max-w-prose leading-relaxed">
+        I'm Defit, but you might know me as DefeatOf13. I'm really into Formula 1 and console modding.
+        Occasionally, I dive into programming and work on homebrew apps for Nintendo consoles
+      </p>
+    </div>
+  </section>
+  <section>
+    <h2 class="mt-12 text-2xl font-semibold dark:text-zinc-100 text-zinc-900">
+      Recent Posts
+    </h2>
+    <ul class="mt-6 grid grid-cols-1">
+      {posts.slice(0, 3).map((post) => <Blog {...post} />)}
+    </ul>
+    <a
+      class="inline-block mt-7 dark:hover:text-zinc-50 hover:text-zinc-400 transition-colors"
+      href="/blog/">View all posts &rarr;</a
+    >
+  </section>
+</Layout>
