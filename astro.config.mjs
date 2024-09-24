@@ -55,7 +55,7 @@ export default defineConfig({
   image: {
     service: sharpImageService(),
   },
-  site: "https://astrozinc.exylons.com",
+  site: "https://defitmodsthings.github.io",
   vite: {
     plugins: [rawFonts([".ttf", ".woff"])],
     optimizeDeps: {
